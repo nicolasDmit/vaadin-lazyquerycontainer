@@ -246,7 +246,7 @@ public interface QueryDefinition {
     /**
      * Gets the max query size.
      *
-     * @return the max query size
+     * @return the max query size
      */
     int getMaxQuerySize();
 

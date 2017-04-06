@@ -421,7 +421,7 @@ public class LazyQueryDefinition implements QueryDefinition, Serializable {
 
     /**
      * Gets the max query size.
-     * @return the max query size
+     * @return the max query size
      */
     @Override
     public final int getMaxQuerySize() {
