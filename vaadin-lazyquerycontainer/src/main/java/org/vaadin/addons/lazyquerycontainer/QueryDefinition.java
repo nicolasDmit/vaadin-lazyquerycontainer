@@ -15,7 +15,7 @@
  */
 package org.vaadin.addons.lazyquerycontainer;
 
-import com.vaadin.data.Container;
+import com.vaadin.v7.data.Container;
 
 import java.util.Collection;
 import java.util.List;
@@ -246,7 +246,7 @@ public interface QueryDefinition {
     /**
      * Gets the max query size.
      *
-     * @returnÂ the max query size
+     * @return the max query size
      */
     int getMaxQuerySize();
 

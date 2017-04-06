@@ -15,7 +15,7 @@
  */
 package org.vaadin.addons.lazyquerycontainer;
 
-import com.vaadin.data.util.BeanItem;
+import com.vaadin.v7.data.util.BeanItem;
 
 import javax.persistence.EntityManager;
 
@@ -120,6 +120,8 @@ public final class EntityContainer<T> extends LazyQueryContainer {
     public T getEntity(final Object id) {
         return getEntity(indexOfId(id));
     }
+
+
 
     /**
      * Gets entity at given index.

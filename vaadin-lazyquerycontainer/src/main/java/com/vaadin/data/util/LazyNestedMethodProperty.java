@@ -16,8 +16,11 @@
  */
 package com.vaadin.data.util;
 
-import com.vaadin.data.Property;
-import com.vaadin.data.util.MethodProperty.MethodException;
+import com.vaadin.shared.util.SharedUtil;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.util.AbstractProperty;
+import com.vaadin.v7.data.util.MethodProperty;
+import com.vaadin.v7.data.util.MethodProperty.MethodException;
 import com.vaadin.util.ReflectTools;
 
 import java.io.IOException;
@@ -141,17 +144,29 @@ public class LazyNestedMethodProperty<T> extends AbstractProperty<T> {
             throw new IllegalArgumentException("Invalid property name '"
                     + propertyName + "'");
         }
-        for (int i = 0; i < simplePropertyNames.length; i++) {
-            String simplePropertyName = simplePropertyNames[i].trim();
+        for (String simplePropertyName1 : simplePropertyNames) {
+            String simplePropertyName = simplePropertyName1.trim();
             if (simplePropertyName.length() > 0) {
                 lastSimplePropertyName = simplePropertyName;
                 lastClass = propertyClass;
                 try {
-                    Method getter = MethodProperty.initGetterMethod(
-                            simplePropertyName, propertyClass);
+                    Method getMethod = null;
+                    String lcPropertyName = SharedUtil.capitalize(simplePropertyName);
+                    try {
+                        getMethod = propertyClass.getMethod("get" + lcPropertyName);
+                    } catch (NoSuchMethodException var6) {
+                        try {
+                            getMethod = propertyClass.getMethod("is" + lcPropertyName);
+                        } catch (NoSuchMethodException var5) {
+                            getMethod = propertyClass.getMethod("are" + lcPropertyName);
+                        }
+                    }
+
+                    Method getter = getMethod;
+
                     propertyClass = getter.getReturnType();
                     getMethods.add(getter);
-                } catch (final java.lang.NoSuchMethodException e) {
+                } catch (final NoSuchMethodException e) {
                     throw new IllegalArgumentException("Bean property '"
                             + simplePropertyName + "' not found", e);
                 }

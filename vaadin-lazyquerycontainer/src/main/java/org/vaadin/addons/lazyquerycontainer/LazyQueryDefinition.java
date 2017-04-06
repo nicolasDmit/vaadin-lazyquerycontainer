@@ -15,7 +15,7 @@
  */
 package org.vaadin.addons.lazyquerycontainer;
 
-import com.vaadin.data.Container;
+import com.vaadin.v7.data.Container;
 
 import java.io.Serializable;
 import java.security.InvalidParameterException;
@@ -421,7 +421,7 @@ public class LazyQueryDefinition implements QueryDefinition, Serializable {
 
     /**
      * Gets the max query size.
-     * @returnÂ the max query size
+     * @return the max query size
      */
     @Override
     public final int getMaxQuerySize() {

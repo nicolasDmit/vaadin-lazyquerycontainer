@@ -16,10 +16,11 @@
  */
 package org.vaadin.addons.lazyquerycontainer;
 
-import com.vaadin.data.util.BeanItem;
+import com.vaadin.v7.data.Property;
+import com.vaadin.v7.data.util.BeanItem;
 import com.vaadin.data.util.LazyNestedMethodProperty;
-import com.vaadin.data.util.MethodPropertyDescriptor;
-import com.vaadin.data.util.VaadinPropertyDescriptor;
+import com.vaadin.v7.data.util.MethodPropertyDescriptor;
+import com.vaadin.v7.data.util.VaadinPropertyDescriptor;
 
 import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
@@ -119,7 +120,7 @@ public class NestingBeanItem<BT> extends BeanItem<BT> {
      *            field in the object referenced to by field1
      */
     public void addNestedProperty(final String nestedPropertyId) {
-        addItemProperty(nestedPropertyId, new LazyNestedMethodProperty<Object>(
+        addItemProperty(nestedPropertyId, (Property) new LazyNestedMethodProperty<Object>(
                 getBean(), nestedPropertyId));
     }
 
